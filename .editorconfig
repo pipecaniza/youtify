@@ -1,0 +1,13 @@
+
+# top-most EditorConfig file
+root = true
+
+# Indentation override for all JS under src directory
+[{src/**.js,src/**.json}]
+indent_style = space
+indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2

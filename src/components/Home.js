@@ -1,8 +1,11 @@
 import React from 'react';
+import VideoListContainer from '../containers/VideoListContainer';
 
 const Home = () => {
 	return (
-		<div>Home</div>
+    <div className="container">
+		<VideoListContainer />
+    </div>
 	);
 };
 
