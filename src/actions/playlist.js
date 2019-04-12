@@ -1,13 +1,13 @@
 import { getPlaylists, postPlaylist, deletePlaylist, patchPlaylist } from '../apis/playlist';
 import constants from '../common/constants';
 
-export const fetchPlaylists = () => async (dispatch, store) => {
-  const userId = store.auth.userId;
+export const fetchPlaylists = () => async (dispatch, getState) => {
+  const userId = getState().auth.userId;
   if (userId != null) {
     const response = await getPlaylists(userId);     
     dispatch({ type: constants.ACTIONS.FETCH_PLAYLISTS, payload: response.data });  
   } else {
-    dispatch(cleanUser);
+    dispatch(cleanPlaylists);
   }
 };
 
@@ -15,8 +15,8 @@ export const cleanPlaylists = () => {
   return { type: constants.ACTIONS.CLEAN_PLAYLISTS };
 };
 
-export const createPlaylist = name => async (dispatch, store) => {
-  const userId = store.auth.userId;
+export const createPlaylist = name => async (dispatch, getState) => {
+  const userId = getState().auth.userId;
   const playlist = {
     userId ,
     name,
@@ -31,22 +31,27 @@ export const removePlaylist = id => async dispatch => {
   dispatch({ type: constants.ACTIONS.REMOVE_PLAYLIST, payload: id });
 };
 
-export const addVideoToPlaylist = (playlistId, videoId) => async (dispatch, store) => {
-  const playlist = store.playlists.find(({id}) => id === videoId);
+export const addVideoToPlaylist = (playlistId, videoId) => async (dispatch, getState) => {
+  let playlist = getState().playlists.find(({id}) => id === videoId);
   if (playlist === null){
     return;    
   }
   playlist = { ...playlist, videos: [ ...playlist.videos, videoId ] };
   const response = await patchPlaylist(playlistId, playlist);
-  dispatch({ type: ADD_VIDEO_TO_PLAYLIST, payload: response.data });
+  dispatch({ type: constants.ACTIONS.ADD_VIDEO_TO_PLAYLIST, payload: response.data });
 };
 
-export const removeVideoToPlaylist = (playlistId, videoId) => async (dispatch, store) => {
-  const playlist = store.playlists.find(({id}) => id === videoId);
+export const removeVideoToPlaylist = (playlistId, videoId) => async (dispatch, getState) => {
+  let playlist = getState().playlists.find(({id}) => id === videoId);
   if (playlist === null){
     return;    
   }
-  playlist = { ...playlist, videos: playlist.videos.filter(({id}) => { id !== videoId }) };
+  playlist = { 
+    ...playlist, 
+    videos: playlist.videos.filter(
+      ({id}) => id !== videoId
+    ) 
+  };
   const response = await patchPlaylist(playlistId, playlist);
-  dispatch({ type: REMOVE_VIDEO_TO_PLAYLIST, payload: response.data });
+  dispatch({ type: constants.ACTIONS.REMOVE_VIDEO_FROM_PLAYLIST, payload: response.data });
 };

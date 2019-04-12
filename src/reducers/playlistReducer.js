@@ -1,22 +1,22 @@
 import constants from '../common/constants';
 
 const defaultState = {
-  playLists: []
+  playlists: []
 };
 
 export default (state = defaultState, action) => {
   switch(action.type) {
     case constants.ACTIONS.FETCH_PLAYLISTS:
-      return { ...state, playLists: action.payload };
+      return { ...state, playlists: action.payload };
     case constants.ACTIONS.CREATE_PLAYLIST:
-      return { ...state, playLists: [ ...playLists, action.payload ] };
+      return { ...state, playlists: [ ...state.playlists, action.payload ] };
     case constants.ACTIONS.REMOVE_PLAYLIST:
-      return { ...state, playLists: state.playLists.filter(({id}) => id !== action.payload) };
+      return { ...state, playlists: state.playlists.filter(({id}) => id !== action.payload) };
     case constants.ACTIONS.ADD_SONG_TO_PLAYLIST:
     case constants.ACTIONS.REMOVE_VIDEO_FROM_PLAYLIST:
-      return { ...state, playLists: state.playLists.map(
+      return { ...state, playlists: state.playlists.map(
         (playlist) => {
-          if (id !== action.payload.id) {
+          if (playlist.id !== action.payload.id) {
             return playlist
           }
           return action.payload;

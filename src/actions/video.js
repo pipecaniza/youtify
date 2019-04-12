@@ -1,9 +1,20 @@
-import { getPopularVideos } from '../apis/video';
+import { getPopularVideos, findVideosByTerm } from '../apis/video';
 import constants from '../common/constants';
 
 export const fetchVideos = () => async dispatch => {
-  const response = await getPopularVideos();  
-  console.log(response);
+  const response = await getPopularVideos();    
+  const videos = response.data.items.map((item) => {
+    return {
+      id: item.id,
+      title: item.snippet.title,
+      thumbnail: item.snippet.thumbnails.medium.url,      
+    }
+  });
+  dispatch({ type: constants.ACTIONS.FETCH_VIDEOS, payload: videos });
+}
+
+export const searchVideos = (term) => async dispatch => {
+  const response = await findVideosByTerm(term);     
   const videos = response.data.items.map((item) => {
     return {
       id: item.id,
