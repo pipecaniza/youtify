@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Playlist = ({name, id}) => {
   return (
-    <li><a className="nav-link" href="/">name</a></li>
+    <li><Link to={`/Playlist/${id}`} className="nav-link" >{name}</Link></li>
   );
 };
 

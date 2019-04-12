@@ -18,7 +18,8 @@ const App = () => {
         <PlaylistsContainer />
 				<Switch>
 					<Route path='/' exact component={Home} />
-          <Route path='/Search/:searchTerm?' exact component={Search} />
+          <Route path='/Search/:searchTerm?' exact component={Home} />
+          <Route path='/Playlist/:name' exact component={Home} />
 				</Switch>        
 			</Router>      
 		</div>

@@ -8,6 +8,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch(action.type) {
     case constants.ACTIONS.FETCH_VIDEOS:
+    console.log("fetch videos",action.payload)
       return { ...state, videos: action.payload };
     case constants.ACTIONS.SELECT_VIDEO:
       return { ...state, selectedVideo: action.payload };

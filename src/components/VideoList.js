@@ -7,7 +7,7 @@ const VideoList = ({ videos, selectVideo }) => {
       {
         videos.map((video) => {
           return (
-            <div className="col-md-4 mb-4" key={video.id}>
+            <div className="col-md-4 mb-4" key={video.id.videoId}>              
               <VideoCard video={video} selectVideo={selectVideo} />
             </div>
           );
