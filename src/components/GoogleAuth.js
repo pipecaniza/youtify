@@ -1,7 +1,6 @@
 import React from 'react';
 
-const GoogleAuth = ({ isSignedIn, signIn, signOut }) => {
-  console.log(isSignedIn);
+const GoogleAuth = ({ isSignedIn, signIn, signOut }) => {  
   if (isSignedIn === null) {
     return null;
   }

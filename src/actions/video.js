@@ -15,8 +15,7 @@ export const fetchVideos = () => async dispatch => {
 
 export const fetchVideosByIds = (playlistId) => async (dispatch, getState) => {  
   const playlist = getState().playlists.playlists.find((playlist) => playlist.id === playlistId);
-  if (!playlist || playlist.videos.length <= 0) {
-    console.log("asdddddddddd");
+  if (!playlist || playlist.videos.length <= 0) {    
     dispatch({ type: constants.ACTIONS.FETCH_VIDEOS, payload: [] });
     return;
   } 
@@ -33,10 +32,10 @@ export const fetchVideosByIds = (playlistId) => async (dispatch, getState) => {
 }
 
 export const searchVideos = (term) => async dispatch => {
-  const response = await findVideosByTerm(term);     
+  const response = await findVideosByTerm(term);       
   const videos = response.data.items.map((item) => {
     return {
-      id: item.id,
+      id: item.id.videoId,
       title: item.snippet.title,
       thumbnail: item.snippet.thumbnails.medium.url,      
     }

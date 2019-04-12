@@ -2,18 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getIsSignIn } from '../selectors';
 import { signIn, signOut } from '../actions/auth';
-import { fetchPlaylists } from '../actions/playlist';
 import GoogleAuth from '../components/GoogleAuth';
 
 class GoogleAuthContainer extends React.Component {
   componentDidMount() {
     window.gapi.load('client:auth2', () => {
       window.gapi.client.init({
-          clientId: '',
           scope: 'email'
       }).then(() => {
-          this.auth = window.gapi.auth2.getAuthInstance();
-          console.log(this.auth);
+          this.auth = window.gapi.auth2.getAuthInstance();          
           this.onAuthChange(this.auth.isSignedIn.get());
           this.auth.isSignedIn.listen(this.onAuthChange);
       }).catch((e)=>{alert(e)});
@@ -26,8 +23,6 @@ class GoogleAuthContainer extends React.Component {
     } else {
       this.props.signOut();
     }
-
-    this.props.fetchPlaylists();
   }
 
   onSignInClick = () => {    
@@ -39,7 +34,6 @@ class GoogleAuthContainer extends React.Component {
   };
 
   render() {
-    console.log(this.props.isSignedIn);
     return (
       <GoogleAuth isSignedIn={this.props.isSignedIn} signIn={this.onSignInClick} signOut={this.onSignOutClick} />
     );
@@ -52,4 +46,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { signIn, signOut, fetchPlaylists })(GoogleAuthContainer);
+export default connect(mapStateToProps, { signIn, signOut })(GoogleAuthContainer);

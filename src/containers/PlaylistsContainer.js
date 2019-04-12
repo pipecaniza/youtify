@@ -18,7 +18,6 @@ class PlaylistsContainer extends React.Component {
   }
 
   render() {  
-    console.log(this.props.playlists) ;
     return (
       <PlayLists playlists={this.props.playlists} />
     );

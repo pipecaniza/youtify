@@ -2,7 +2,6 @@ import React from 'react';
 import { Router, Route, Switch } from 'react-router';
 import history from '../history';
 import Home from '../pages/Home';
-import Search from '../pages/Search';
 import Header from './Header';
 import PlayerContainer from '../containers/PlayerContainer';
 import PlaylistsContainer from '../containers/PlaylistsContainer';

@@ -32,24 +32,24 @@ export const removePlaylist = id => async dispatch => {
 };
 
 export const addVideoToPlaylist = (playlistId, videoId) => async (dispatch, getState) => {
-  let playlist = getState().playlists.find(({id}) => id === videoId);
-  if (playlist === null){
+  let playlist = getState().playlists.playlists.find(({id}) => id === playlistId);
+  if (!playlist){
     return;    
   }
   playlist = { ...playlist, videos: [ ...playlist.videos, videoId ] };
-  const response = await patchPlaylist(playlistId, playlist);
+  const response = await patchPlaylist(playlistId, playlist);  
   dispatch({ type: constants.ACTIONS.ADD_VIDEO_TO_PLAYLIST, payload: response.data });
 };
 
-export const removeVideoToPlaylist = (playlistId, videoId) => async (dispatch, getState) => {
-  let playlist = getState().playlists.find(({id}) => id === videoId);
-  if (playlist === null){
+export const removeVideoFromPlaylist = (playlistId, videoId) => async (dispatch, getState) => {
+  let playlist = getState().playlists.playlists.find(({id}) => id === playlistId);
+  if (!playlist){
     return;    
   }
   playlist = { 
     ...playlist, 
     videos: playlist.videos.filter(
-      ({id}) => id !== videoId
+      (id) => id !== videoId
     ) 
   };
   const response = await patchPlaylist(playlistId, playlist);

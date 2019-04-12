@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchVideos, selectVideo, searchVideos, fetchVideosByIds } from '../actions/video';
-import { getVideos, getSearchTermFromUrl, getPlaylistFromUrl } from '../selectors';
+import { getVideos, getSearchTermFromUrl, getPlaylistFromUrl, getIsSignIn } from '../selectors';
 import VideoList from '../components/VideoList';
 
 
@@ -32,41 +32,48 @@ class VideoListContainer extends React.Component {
     // Page starts
     // with no video and no filters
     if (this.props.videos.length === 0 && (!currentSearchTerm && !currentPlaylist)) {      
+      console.log("nofilter");
       this.props.fetchVideos();
+      return;
     }
 
     // Handle back to start page
     if (!currentSearchTerm && !currentPlaylist && (prevSearchTerm !== currentSearchTerm || prevPlaylist !== currentPlaylist)) {
+      console.log("back");
       this.props.fetchVideos();
+      return;
     }
     
     // Handle changed search term
     if (currentSearchTerm && prevSearchTerm !== currentSearchTerm){
+      console.log("search");
       this.props.searchVideos(currentSearchTerm);
       return;
     }
 
     // Handle changed playlist
     if (currentPlaylist && prevPlaylist !== currentPlaylist){   
+      console.log("playlist");
       this.props.fetchVideosByIds(currentPlaylist);
       return;
     }
 
-    console.log('CURRENT search:', currentSearchTerm, ' and playlist',currentPlaylist)
-    console.log('PREV    search:', prevSearchTerm, ' and playlist',prevPlaylist)
+    //console.log('CURRENT search:', currentSearchTerm, ' and playlist',currentPlaylist)
+   // console.log('PREV    search:', prevSearchTerm, ' and playlist',prevPlaylist)
     
   }
 
   render() {
     return (
-      <VideoList videos={this.props.videos} selectVideo={this.props.selectVideo} />
+      <VideoList videos={this.props.videos} selectVideo={this.props.selectVideo} isSignedIn={this.props.isSignedIn} />
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    videos: getVideos(state)
+    videos: getVideos(state),
+    isSignedIn: getIsSignIn(state)
   }  
 };
 

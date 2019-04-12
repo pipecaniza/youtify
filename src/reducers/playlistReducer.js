@@ -12,7 +12,7 @@ export default (state = defaultState, action) => {
       return { ...state, playlists: [ ...state.playlists, action.payload ] };
     case constants.ACTIONS.REMOVE_PLAYLIST:
       return { ...state, playlists: state.playlists.filter(({id}) => id !== action.payload) };
-    case constants.ACTIONS.ADD_SONG_TO_PLAYLIST:
+    case constants.ACTIONS.ADD_VIDEO_TO_PLAYLIST:
     case constants.ACTIONS.REMOVE_VIDEO_FROM_PLAYLIST:
       return { ...state, playlists: state.playlists.map(
         (playlist) => {
