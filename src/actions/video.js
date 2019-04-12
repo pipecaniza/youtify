@@ -3,6 +3,7 @@ import constants from '../common/constants';
 
 export const fetchVideos = () => async dispatch => {
   const response = await getPopularVideos();  
+  console.log(response);
   const videos = response.data.items.map((item) => {
     return {
       id: item.id,

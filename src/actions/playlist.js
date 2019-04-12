@@ -1,0 +1,52 @@
+import { getPlaylists, postPlaylist, deletePlaylist, patchPlaylist } from '../apis/playlist';
+import constants from '../common/constants';
+
+export const fetchPlaylists = () => async (dispatch, store) => {
+  const userId = store.auth.userId;
+  if (userId != null) {
+    const response = await getPlaylists(userId);     
+    dispatch({ type: constants.ACTIONS.FETCH_PLAYLISTS, payload: response.data });  
+  } else {
+    dispatch(cleanUser);
+  }
+};
+
+export const cleanPlaylists = () => {
+  return { type: constants.ACTIONS.CLEAN_PLAYLISTS };
+};
+
+export const createPlaylist = name => async (dispatch, store) => {
+  const userId = store.auth.userId;
+  const playlist = {
+    userId ,
+    name,
+    videos: []
+  }
+  const response = await postPlaylist(playlist);
+  dispatch({ type: constants.ACTIONS.CREATE_PLAYLIST, payload: response.data });
+};
+
+export const removePlaylist = id => async dispatch => {
+  const response = await deletePlaylist(id);
+  dispatch({ type: constants.ACTIONS.REMOVE_PLAYLIST, payload: id });
+};
+
+export const addVideoToPlaylist = (playlistId, videoId) => async (dispatch, store) => {
+  const playlist = store.playlists.find(({id}) => id === videoId);
+  if (playlist === null){
+    return;    
+  }
+  playlist = { ...playlist, videos: [ ...playlist.videos, videoId ] };
+  const response = await patchPlaylist(playlistId, playlist);
+  dispatch({ type: ADD_VIDEO_TO_PLAYLIST, payload: response.data });
+};
+
+export const removeVideoToPlaylist = (playlistId, videoId) => async (dispatch, store) => {
+  const playlist = store.playlists.find(({id}) => id === videoId);
+  if (playlist === null){
+    return;    
+  }
+  playlist = { ...playlist, videos: playlist.videos.filter(({id}) => { id !== videoId }) };
+  const response = await patchPlaylist(playlistId, playlist);
+  dispatch({ type: REMOVE_VIDEO_TO_PLAYLIST, payload: response.data });
+};
