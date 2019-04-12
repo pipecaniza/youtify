@@ -6,6 +6,8 @@ export const getIsSignIn = (state) => state.auth.isSignedIn;
 
 export const getPlaylists = (state) => state.playlists.playlists;
 
-export const getSearchTermFromUrl = (props) => props.match.params.searchTerm
+export const getSearchTermFromUrl = (props) => props.match.params.searchTerm;
 
-export const getPlaylistFromUrl = (props) => props.match.params.name
+export const getPlaylistFromUrl = (props) => props.match.params.name;
+
+export const getIsAddingPlaylist = (state) => state.playlists.isAddingPlaylist;

@@ -55,3 +55,7 @@ export const removeVideoFromPlaylist = (playlistId, videoId) => async (dispatch,
   const response = await patchPlaylist(playlistId, playlist);
   dispatch({ type: constants.ACTIONS.REMOVE_VIDEO_FROM_PLAYLIST, payload: response.data });
 };
+
+export const addingPlaylist = () => {
+  return { type: constants.ACTIONS.ADDING_PLAYLIST };
+}

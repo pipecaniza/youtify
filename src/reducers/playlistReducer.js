@@ -1,7 +1,8 @@
 import constants from '../common/constants';
 
 const defaultState = {
-  playlists: []
+  playlists: [],
+  isAddingPlaylist: false
 };
 
 export default (state = defaultState, action) => {
@@ -24,6 +25,8 @@ export default (state = defaultState, action) => {
       };
     case constants.ACTIONS.CLEAN_PLAYLISTS:
       return defaultState;
+    case constants.ACTIONS.ADDING_PLAYLIST:
+      return { ...state, isAddingPlaylist: true }
     default:
       return state;
   }

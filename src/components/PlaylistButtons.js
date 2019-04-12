@@ -1,5 +1,5 @@
 import React from 'react';
-import AddToPlaylist from '../components/AddToPlaylist';
+import OptionsPlaylist from './OptionsPlaylist';
 
 const hasBeenAlreadyAdded = (playlist, videoId) => {
   return playlist.videos.find((video) => video === videoId)
@@ -8,8 +8,8 @@ const hasBeenAlreadyAdded = (playlist, videoId) => {
 const PlaylistButtons = ({playlists, addAction, removeAction, videoId}) => {  
   return (
     <div class="dropdown">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Add To Playlist
+      <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-cog"></i>
       </a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         {
@@ -20,7 +20,7 @@ const PlaylistButtons = ({playlists, addAction, removeAction, videoId}) => {
               onClickAction = removeAction;
               icon = 'fas fa-minus';
             }
-            return <AddToPlaylist playlist={playlist} onClick={onClickAction} icon={icon} key={`${videoId}-${index}`} videoId={videoId} />;
+            return <OptionsPlaylist playlist={playlist} onClick={onClickAction} icon={icon} key={`${videoId}-${index}`} videoId={videoId} />;
           })
         }
       </div>

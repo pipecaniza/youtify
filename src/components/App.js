@@ -14,7 +14,6 @@ const App = () => {
 				<Header />      
         <Navigation />
         <PlayerContainer/>      
-        <PlaylistsContainer />
 				<Switch>
 					<Route path='/' exact component={Home} />
           <Route path='/Search/:searchTerm?' exact component={Home} />

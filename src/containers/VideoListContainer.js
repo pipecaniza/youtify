@@ -29,16 +29,11 @@ class VideoListContainer extends React.Component {
     const prevPlaylist = getPlaylistFromUrl(prevProps);
     const currentPlaylist = getPlaylistFromUrl(this.props);
 
-    // Page starts
-    // with no video and no filters
-    if (this.props.videos.length === 0 && (!currentSearchTerm && !currentPlaylist)) {      
-      console.log("nofilter");
-      this.props.fetchVideos();
+    if (prevSearchTerm === currentSearchTerm && prevPlaylist === currentPlaylist)
       return;
-    }
 
     // Handle back to start page
-    if (!currentSearchTerm && !currentPlaylist && (prevSearchTerm !== currentSearchTerm || prevPlaylist !== currentPlaylist)) {
+    if (!currentSearchTerm && !currentPlaylist) {
       console.log("back");
       this.props.fetchVideos();
       return;

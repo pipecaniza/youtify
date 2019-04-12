@@ -1,7 +1,7 @@
 import youtube from './youtube';
 
 export const findVideosByTerm = async (term) => {
-  return await youtube.get('/search', { params: { q: term, type: 'video' } });
+  return await youtube.get('/search', { params: { q: term, type: 'video', maxResults: 20 } });
 };
 
 export const getPopularVideos = async () => {
