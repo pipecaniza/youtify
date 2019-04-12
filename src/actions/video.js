@@ -8,8 +8,16 @@ export const fetchVideos = () => async dispatch => {
     return {
       id: item.id,
       title: item.snippet.title,
-      thumbnail: item.snippet.thumbnails.default.url,      
+      thumbnail: item.snippet.thumbnails.medium.url,      
     }
   });
   dispatch({ type: constants.ACTIONS.FETCH_VIDEOS, payload: videos });
 }
+
+export const selectVideo = (id) => {
+  return { type: constants.ACTIONS.SELECT_VIDEO, payload: id };
+};
+
+export const removeSelectedVideo = () => {
+  return { type: constants.ACTIONS.REMOVE_SELECTED_VIDEO };
+};

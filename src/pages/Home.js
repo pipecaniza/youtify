@@ -4,7 +4,7 @@ import VideoListContainer from '../containers/VideoListContainer';
 const Home = () => {
 	return (
     <div className="container">
-		<VideoListContainer />
+		  <VideoListContainer />
     </div>
 	);
 };
