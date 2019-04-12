@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getIsSignIn } from '../selectors';
 import { signIn, signOut } from '../actions/auth';
+import { fetchPlaylists } from '../actions/playlist';
 import GoogleAuth from '../components/GoogleAuth';
 
 class GoogleAuthContainer extends React.Component {
@@ -20,12 +21,14 @@ class GoogleAuthContainer extends React.Component {
   }
 
   onAuthChange = (isSignedIn) => {    
-    console.log(this.props.isSignedIn);
+  onAuthChange = (isSignedIn) => {        
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
     } else {
       this.props.signOut();
     }
+
+    this.props.fetchPlaylists();
   }
 
   onSignInClick = () => {    
@@ -50,4 +53,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { signIn, signOut })(GoogleAuthContainer);
+export default connect(mapStateToProps, { signIn, signOut, fetchPlaylists })(GoogleAuthContainer);
