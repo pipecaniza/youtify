@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import videoReducer from './videoReducer';
+import authReducer from './authReducer';
 
 export default combineReducers({
-  videos: videoReducer
+  videos: videoReducer,
+  auth: authReducer
 });
