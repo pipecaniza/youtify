@@ -1,4 +1,6 @@
 const constants = {
+  BACKEND_URL: 'https://youtifybackend.azurewebsites.net',
+  BACKEND_URL_DEV: 'http://localhost:3001',
   ACTIONS: {
     FETCH_VIDEOS: 'FETCH_VIDEOS',
     SELECT_VIDEO: 'SELECT_VIDEO',
