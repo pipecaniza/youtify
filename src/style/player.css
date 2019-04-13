@@ -38,3 +38,7 @@
 .remove-playlist:hover i {
     color: white;
 }
+
+.big-spinner {
+    font-size: 36px;
+}

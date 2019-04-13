@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPlaylists, removePlaylist } from '../actions/playlist';
-import { getIsSignIn, getPlaylists } from '../selectors';
+import { getIsSignIn, getPlaylists, getIsLoadingPlaylists } from '../selectors';
 import PlayLists from '../components/Playlists';
+import Spinner from '../components/Spinner';
 
 class PlaylistsContainer extends React.Component {
   componentDidMount() {
@@ -19,7 +20,14 @@ class PlaylistsContainer extends React.Component {
 
   render() {  
     return (
-      <PlayLists playlists={this.props.playlists} removePlaylist={this.props.removePlaylist} />
+      <>
+        <center>
+          <div className="text-white mt-3">
+            <Spinner isLoading={this.props.isLoading} />
+          </div>
+        </center>
+        <PlayLists playlists={this.props.playlists} removePlaylist={this.props.removePlaylist} />
+      </>
     );
   }
 }
@@ -27,7 +35,8 @@ class PlaylistsContainer extends React.Component {
 const mapStateToProps = (state) => {  
   return {
     isSignedIn: getIsSignIn(state),
-    playlists: getPlaylists(state)
+    playlists: getPlaylists(state),
+    isLoading: getIsLoadingPlaylists(state)
   }
 };
 

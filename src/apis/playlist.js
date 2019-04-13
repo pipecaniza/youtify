@@ -3,12 +3,11 @@ import constants from '../common/constants';
 
 const API_URL = process.env.NODE_ENV !== 'production' ? constants.BACKEND_URL_DEV : constants.BACKEND_URL;
 
-export const getPlaylists = async (userId) => {
-  
+export const getPlaylists = async (userId) => {   
   return await axios.get(`${API_URL}/playlists?userId=${userId}`);
 };
 
-export const postPlaylist = async (playlist) => {
+export const postPlaylist = async (playlist) => {  
   return await axios.post(`${API_URL}/playlists/`, playlist);
 };
 

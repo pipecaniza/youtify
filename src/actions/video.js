@@ -1,7 +1,12 @@
 import { getPopularVideos, findVideosByTerm, getVideosById } from '../apis/video';
 import constants from '../common/constants';
 
+export const requestFetchVideos = () => {
+  return { type: constants.ACTIONS.REQUEST_FETCH_VIDEOS };
+};
+
 export const fetchVideos = () => async dispatch => {
+  dispatch(requestFetchVideos());  
   const response = await getPopularVideos();    
   const videos = response.data.items.map((item) => {
     return {

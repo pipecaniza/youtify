@@ -1,13 +1,18 @@
 import { getPlaylists, postPlaylist, deletePlaylist, patchPlaylist } from '../apis/playlist';
 import constants from '../common/constants';
 
+export const requestFetchPlaylists = () => {
+  return { type: constants.ACTIONS.REQUEST_FETCH_PLAYLISTS };
+};
+
 export const fetchPlaylists = () => async (dispatch, getState) => {
+  dispatch(requestFetchPlaylists());
   const userId = getState().auth.userId;
   if (userId != null) {
     const response = await getPlaylists(userId);     
     dispatch({ type: constants.ACTIONS.FETCH_PLAYLISTS, payload: response.data });  
   } else {
-    dispatch(cleanPlaylists);
+    dispatch(cleanPlaylists());
   }
 };
 
@@ -16,6 +21,7 @@ export const cleanPlaylists = () => {
 };
 
 export const createPlaylist = name => async (dispatch, getState) => {
+  dispatch(requestFetchPlaylists());
   const userId = getState().auth.userId;
   const playlist = {
     userId ,

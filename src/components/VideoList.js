@@ -22,7 +22,7 @@ const VideoList = ({ videos, selectVideo, isSignedIn }) => {
       <div className="jumbotron jumbotron-fluid">
         <center>
           <div className="container">
-            <h1 className="display-4"><i class="far fa-frown"></i></h1>
+            <h1 className="display-4"><i className="far fa-frown"></i></h1>
             <p className="lead">There's nothing here.</p>
           </div>
         </center>
