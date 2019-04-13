@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchVideos, selectVideo, searchVideos, fetchVideosByIds } from '../actions/video';
-import { getVideos, getSearchTermFromUrl, getPlaylistFromUrl, getIsSignIn } from '../selectors';
+import { getVideos, getSearchTermFromUrl, getPlaylistFromUrl, getIsSignIn, getIsLoadingVideos } from '../selectors';
 import VideoList from '../components/VideoList';
+import Spinner from '../components/Spinner';
 
 
 class VideoListContainer extends React.Component {
@@ -34,33 +35,38 @@ class VideoListContainer extends React.Component {
 
     // Handle back to start page
     if (!currentSearchTerm && !currentPlaylist) {
-      console.log("back");
       this.props.fetchVideos();
       return;
     }
     
     // Handle changed search term
     if (currentSearchTerm && prevSearchTerm !== currentSearchTerm){
-      console.log("search");
       this.props.searchVideos(currentSearchTerm);
       return;
     }
 
     // Handle changed playlist
     if (currentPlaylist && prevPlaylist !== currentPlaylist){   
-      console.log("playlist");
       this.props.fetchVideosByIds(currentPlaylist);
       return;
-    }
-
-    //console.log('CURRENT search:', currentSearchTerm, ' and playlist',currentPlaylist)
-   // console.log('PREV    search:', prevSearchTerm, ' and playlist',prevPlaylist)
-    
+    }    
   }
 
   render() {
     return (
-      <VideoList videos={this.props.videos} selectVideo={this.props.selectVideo} isSignedIn={this.props.isSignedIn} />
+      <>      
+        
+          <center>
+            <div className="text-dark big-spinner">   
+              <Spinner isLoading={this.props.isLoading} text="Loading..."/>
+            </div>
+          </center>
+        
+        {
+          !this.props.isLoading &&
+          <VideoList videos={this.props.videos} selectVideo={this.props.selectVideo} isSignedIn={this.props.isSignedIn} />
+        }        
+      </>
     );
   }
 }
@@ -68,7 +74,8 @@ class VideoListContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     videos: getVideos(state),
-    isSignedIn: getIsSignIn(state)
+    isSignedIn: getIsSignIn(state),
+    isLoading: getIsLoadingVideos(state)
   }  
 };
 

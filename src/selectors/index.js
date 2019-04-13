@@ -11,3 +11,7 @@ export const getSearchTermFromUrl = (props) => props.match.params.searchTerm;
 export const getPlaylistFromUrl = (props) => props.match.params.name;
 
 export const getIsAddingPlaylist = (state) => state.playlists.isAddingPlaylist;
+
+export const getIsLoadingPlaylists = (state) => state.playlists.isLoading;
+
+export const getIsLoadingVideos = (state) => state.videos.isLoading;
