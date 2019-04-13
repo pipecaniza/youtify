@@ -1,11 +1,11 @@
 import youtube from './youtube';
 
 export const findVideosByTerm = async (term) => {
-  return await youtube.get('/search', { params: { q: term, type: 'video', maxResults: 20 } });
+  return await youtube.get('/search', { params: { q: term, type: 'video' } });
 };
 
 export const getPopularVideos = async () => {
-  return await youtube.get('/videos', { params: { chart: 'mostPopular', maxResults: 20 } });
+  return await youtube.get('/videos', { params: { chart: 'mostPopular'} });
 };
 
 export const getVideosById = async (ids) => {

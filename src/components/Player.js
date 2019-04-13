@@ -10,10 +10,11 @@ const Player = ({ id, onClick }) => {
   const videoSrc = `https://www.youtube.com/embed/${id}`;
 
   return (    
-    <div class="card" id="player">
-      <div class="card-header">
+    <div class="card bg-dark-alpha-low" id="player">
+      <div class="card-header text-white bg-dark-alpha-hi">
+        Playing now!
         <button type="button" class="close" onClick={onClick} >
-          <span>&times;</span>
+          <span className="text-white">&times;</span>
         </button>
       </div>
       <div class="card-body">

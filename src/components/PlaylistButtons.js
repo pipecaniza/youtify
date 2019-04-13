@@ -7,11 +7,11 @@ const hasBeenAlreadyAdded = (playlist, videoId) => {
 
 const PlaylistButtons = ({playlists, addAction, removeAction, videoId}) => {  
   return (
-    <div class="dropdown">
-      <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-cog"></i>
+    <div className="dropdown">
+      <a className="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i className="fas fa-cog"></i>
       </a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
         {
           playlists.map((playlist, index) => {        
             let onClickAction = addAction;

@@ -9,9 +9,9 @@ const Header = () => {
       <Link to="/" className="navbar-brand">Youtify</Link>           
       <SearchBar />
       <GoogleAuthContainer />
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sideNavbar"
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#sideNavbar"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
     </nav>
   );
