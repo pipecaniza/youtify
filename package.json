@@ -30,7 +30,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "deep-freeze": "0.0.1"
+    "deep-freeze": "0.0.1",
+    "react-test-renderer": "^16.8.6"
   },
   "engines": {
     "node": "^10.14.1"
