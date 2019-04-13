@@ -14,13 +14,16 @@ export const fetchVideos = () => async dispatch => {
 }
 
 export const fetchVideosByIds = (playlistId) => async (dispatch, getState) => {  
-  const playlist = getState().playlists.playlists.find((playlist) => playlist.id === playlistId);
+  const playlist = getState().playlists.playlists.find((playlist) => playlist.id == playlistId);
+  console.log("playlista", playlist)
   if (!playlist || playlist.videos.length <= 0) {    
     dispatch({ type: constants.ACTIONS.FETCH_VIDEOS, payload: [] });
     return;
   } 
   
+  
   const response = await getVideosById(playlist.videos.reduce((prev, current) => {return prev + ',' + current }) );    
+  console.log("playlist", response)
   const videos = response.data.items.map((item) => {
     return {
       id: item.id,

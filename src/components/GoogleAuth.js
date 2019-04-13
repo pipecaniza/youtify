@@ -6,7 +6,7 @@ const GoogleAuth = ({ isSignedIn, signIn, signOut }) => {
   }
   if (isSignedIn) {
     return (
-        <button type="button" className="btn btn-danger" onClick={signOut}>
+        <button type="button" className="btn btn-danger sign-out" onClick={signOut}>
           <i className="fab fa-google"></i>
           &nbsp;Sign Out
         </button>
@@ -14,7 +14,7 @@ const GoogleAuth = ({ isSignedIn, signIn, signOut }) => {
   }
   else {
     return (      
-        <button type="button" className="btn btn-primary" onClick={signIn}>
+        <button type="button" className="btn btn-primary sign-in" onClick={signIn}>
           <i className="fab fa-google"></i>
         &nbsp;Sign In with Google
         </button>
