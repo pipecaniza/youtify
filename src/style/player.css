@@ -30,3 +30,15 @@
 .navbar-side {
     z-index: 1020;
 }
+
+.remove-playlist {
+    padding-top: 8px;
+}
+
+.remove-playlist:hover {
+    cursor: pointer; 
+}
+
+.remove-playlist:hover i {
+    color: white;
+}

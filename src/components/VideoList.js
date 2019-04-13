@@ -6,7 +6,6 @@ const VideoList = ({ videos, selectVideo, isSignedIn }) => {
     <div className="row">
       {
         videos.map((video) => {
-          console.log(video.id.videoId)
           return (
             <div className="col-md-4 mb-4" key={video.id}>              
               <VideoCard video={video} selectVideo={selectVideo} isSignedIn={isSignedIn} />

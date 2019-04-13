@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPlaylists } from '../actions/playlist';
+import { fetchPlaylists, removePlaylist } from '../actions/playlist';
 import { getIsSignIn, getPlaylists } from '../selectors';
 import PlayLists from '../components/Playlists';
 
@@ -19,7 +19,7 @@ class PlaylistsContainer extends React.Component {
 
   render() {  
     return (
-      <PlayLists playlists={this.props.playlists} />
+      <PlayLists playlists={this.props.playlists} removePlaylist={this.props.removePlaylist} />
     );
   }
 }
@@ -31,4 +31,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { fetchPlaylists })(PlaylistsContainer);
+export default connect(mapStateToProps, { fetchPlaylists, removePlaylist })(PlaylistsContainer);
