@@ -8,14 +8,16 @@ describe('video reducer', () => {
       videoReducer(undefined, { })
     ).toEqual({
       videos: [],
-      selectedVideo: null
+      selectedVideo: null,
+      isLoading: false
     });
   });
 
   it('should handle FETCH_VIDEOS from an empty state', () => {
     const stateBefore = {
       videos: [],
-      selectedVideo: null
+      selectedVideo: null,
+      isLoading: false
     };
     const action = {
       type: constants.ACTIONS.FETCH_VIDEOS,
@@ -29,14 +31,16 @@ describe('video reducer', () => {
       videoReducer(stateBefore, action)
     ).toEqual({
       videos: ['video1', 'video2'],
-      selectedVideo: null
+      selectedVideo: null,
+      isLoading: false
     });
   });
 
   it('should handle FETCH_VIDEOS from an existing state', () => {
     const stateBefore = {
       videos: ['video1'],
-      selectedVideo: 'video 0'
+      selectedVideo: 'video 0',
+      isLoading: false
     };
     const action = {
       type: constants.ACTIONS.FETCH_VIDEOS,
@@ -50,7 +54,8 @@ describe('video reducer', () => {
       videoReducer(stateBefore, action)
     ).toEqual({
       videos: ['video2', 'video3'],
-      selectedVideo: 'video 0'
+      selectedVideo: 'video 0',
+      isLoading: false
     });
   });
 
