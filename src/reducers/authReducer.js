@@ -1,7 +1,7 @@
 import constants from '../common/constants';
 
 const defaultState = {
-  isSignedIn: false,
+  isSignedIn: null,
   userId: null
 };
 
