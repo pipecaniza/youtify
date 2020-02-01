@@ -33,7 +33,7 @@ export const createPlaylist = name => async (dispatch, getState) => {
 };
 
 export const removePlaylist = id => async dispatch => {
-  const response = await deletePlaylist(id);
+  await deletePlaylist(id);
   dispatch({ type: constants.ACTIONS.REMOVE_PLAYLIST, payload: id });
 };
 
