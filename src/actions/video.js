@@ -19,7 +19,7 @@ export const fetchVideos = () => async dispatch => {
 }
 
 export const fetchVideosByIds = (playlistId) => async (dispatch, getState) => {  
-  const playlist = getState().playlists.playlists.find((playlist) => playlist.id == playlistId);  
+  const playlist = getState().playlists.playlists.find((playlist) => playlist.id === playlistId);  
   if (!playlist || playlist.videos.length <= 0) {    
     dispatch({ type: constants.ACTIONS.FETCH_VIDEOS, payload: [] });
     return;
